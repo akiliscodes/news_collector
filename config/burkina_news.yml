@@ -1,0 +1,30 @@
+- name: Burkina 24
+  link: https://www.burkina24.com/
+  rss: https://www.burkina24.com/feed
+- name: Lefaso.net
+  link: https://www.lefaso.net/
+  rss: https://www.lefaso.net/rss.php
+- name: Sidwaya
+  link: https://www.sidwaya.info/
+  rss: https://www.sidwaya.info/rss
+- name: Burkina Demain
+  link: https://www.burkinademain.com/
+  rss: https://www.burkinademain.com/feed
+- name: AIB (Agence d'Information du Burkina)
+  link: http://www.aib.media/
+  rss: http://www.aib.media/feed
+- name: Wakat Séra
+  link: https://www.wakatsera.com/
+  rss: https://www.wakatsera.com/feed
+- name: Fasozine
+  link: https://fasozine.com/
+  rss: https://fasozine.com/feed
+- name: L'Observateur Paalga
+  link: https://lobservateur.bf/
+  rss: https://lobservateur.bf/feed
+- name: Le Pays
+  link: https://lepays.bf/
+  rss: https://lepays.bf/feed
+- name: LibreInfo
+  link: https://libreinfo.net/
+  rss: https://libreinfo.net/feed
