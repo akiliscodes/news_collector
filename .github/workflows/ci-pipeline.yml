@@ -9,30 +9,6 @@ permissions:
   contents: write
   
 jobs:
-  lint:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install black
-
-      - name: Auto-format code
-        run: |
-          black .
-
-      - name: Lint code
-        run: |
-          pip install flake8
-          flake8 .
   build:  
     runs-on: ubuntu-22.04
     steps:
@@ -40,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.9
 
@@ -51,19 +27,36 @@ jobs:
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
+      - name: Checkout repository and switch to target branch
+        uses: actions/checkout@v4
+        with:
+          ref: data_raw
+          clean: true
+      - name: Remove all existing files except data folder
+        run: |
+          shopt -s extglob
+          rm -rf !(data)
+          shopt -u extglob
 
-      - name: Commit and push changes
+      - name: Copy data folder from source branch
+        run: |
+          git checkout develop -- data
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Commit and push data folder changes to another branch
         run: |
           file_path="data/raw/extract_$(date +%Y-%m-%d).jsonl"
-
           # Check if the file exists
           if [ -f "$file_path" ]; then
-              # Add the file to the staging area
-              git add "$file_path"
-            
-              # Commit the changes with an appropriate message
-              git commit -m "Add generated file generated on $(date +%Y-%m-%d)"
-              git push 
+            # Add the file to the staging area
+            git add "$file_path"
+          
+            # Commit the changes with an appropriate message
+            git commit -m "Add generated file generated on $(date +%Y-%m-%d)"
+            git push origin HEAD:data_raw
           else
-              echo "File $file_path does not exist."
-          fi
+            echo "File $file_pat
