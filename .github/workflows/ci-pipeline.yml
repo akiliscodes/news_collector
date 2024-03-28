@@ -36,11 +36,6 @@ jobs:
           shopt -s extglob
           rm -rf !(data)
           shopt -u extglob
-
-      - name: Copy data folder from source branch
-        run: |
-          git checkout develop -- data
-
       - name: Commit and push data folder changes to another branch
         run: |
           file_path="data/raw/extract_$(date +%Y-%m-%d).jsonl"
