@@ -1,9 +1,12 @@
 name: CI
 
+env:
+  BRANCH_NAME: develop
+
 on:
   push:
     branches:
-      - develop
+      - $BRANCH_NAME
 
 jobs:
   build:
@@ -38,7 +41,8 @@ jobs:
           else
               echo "File $file_path does not exist."
           fi          
-          git commit -m "Add generated file"
+          git commit -m "add generated file"
+          git branch -u origin/$BRANCH_NAME
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
