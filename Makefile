@@ -2,7 +2,7 @@
 
 ENV_NAME = ./newscol
 VENV_PATH = $(ENV_NAME)/bin/activate
-PYTHON_VERSION = 3.9.6
+PYTHON_VERSION = 3.9
 
 .PHONY: init run clean
 
