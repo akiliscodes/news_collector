@@ -1,9 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - develop
+  schedule:
+    - cron: '0 0 * * *'
 
 permissions:
   contents: write
@@ -26,8 +25,8 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
+          git config --global user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
+          git config --global user.name "$(gh api /users/${GITHUB_ACTOR} | jq .name -r)"
 
       - name: Checkout repository and switch to target branch
         run: |
