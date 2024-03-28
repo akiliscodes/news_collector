@@ -42,11 +42,6 @@ jobs:
         run: |
           git checkout develop -- data
 
-      - name: Configure Git
-        run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-
       - name: Commit and push data folder changes to another branch
         run: |
           file_path="data/raw/extract_$(date +%Y-%m-%d).jsonl"
