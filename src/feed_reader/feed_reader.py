@@ -4,6 +4,8 @@ import aiohttp
 import json 
 async def fetch_feed(session, url):
     async with session.get(url) as response:
+        assert response.status == 200
+        print(response.text)
         return await response.text()
     
 async def parse_feed(entry):
@@ -21,7 +23,7 @@ async def parse_feed(entry):
                 'summary': item.get('summary', ''),
                 'content': item.get('content', '')
             } for item in feed.entries]
-        return parsed_feeds
+        return  parsed_feeds
     except Exception as e:
         print(f"Error parsing feed from {entry.get('name')}: {str(e)}")
 
@@ -37,4 +39,3 @@ if __name__ == "__main__":
 
     folder = "config"
     feed_fetcher(folder) 
-

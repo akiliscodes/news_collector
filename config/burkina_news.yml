@@ -13,15 +13,6 @@
 - name: AIB (Agence d'Information du Burkina)
   link: http://www.aib.media/
   rss: http://www.aib.media/feed
-- name: Wakat Séra
-  link: https://www.wakatsera.com/
-  rss: https://www.wakatsera.com/feed
-- name: Fasozine
-  link: https://fasozine.com/
-  rss: https://fasozine.com/feed
-- name: L'Observateur Paalga
-  link: https://lobservateur.bf/
-  rss: https://lobservateur.bf/feed
 - name: Le Pays
   link: https://lepays.bf/
   rss: https://lepays.bf/feed
