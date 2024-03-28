@@ -1,8 +1,5 @@
 name: CI
 
-env:
-  BRANCH_NAME: develop
-
 on:
   push:
     branches:
@@ -25,10 +22,17 @@ jobs:
       - name: Run Makefile
         run: |
           make run 
+
+      - name: Lint code
+        run: |
+          pip install flake8
+          flake8 .
+          
       - name: Configure Git
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
+
       - name: Commit and push changes
         run: |
           file_path="data/raw/extract_$(date +%Y-%m-%d).jsonl"
@@ -40,8 +44,7 @@ jobs:
             
               # Commit the changes with an appropriate message
               git commit -m "Add generated file generated on $(date +%Y-%m-%d)"
-              #git push -u origin/${{ github.head_ref || github.ref_name }} 
               git push 
           else
               echo "File $file_path does not exist."
-          fi      
+          fi
