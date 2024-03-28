@@ -19,7 +19,7 @@ jobs:
 
       - name: Run Makefile
         run: |
-          make init 
+          make run 
       - name: Configure Git
         run: |
           git config --global user.email "github-actions@github.com"
