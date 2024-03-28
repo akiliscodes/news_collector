@@ -37,6 +37,7 @@ jobs:
             git commit -m "add generated files from data folder on $(date +%Y-%m-%d)"
             git switch --orphan data_raw
             git checkout  develop -- data/raw
+            git push origin HEAD:data_raw
           else
             echo "File $file_path does not exist."
           fi
