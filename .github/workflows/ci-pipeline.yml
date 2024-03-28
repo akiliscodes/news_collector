@@ -31,6 +31,7 @@ jobs:
 
       - name: Checkout repository and switch to target branch
         run: |
+          git checkout data_raw
           git checkout  develop -- data/raw
 
       - name: Commit and push data folder changes to another branch
