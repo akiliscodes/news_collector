@@ -28,10 +28,9 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
       - name: Checkout repository and switch to target branch
-        uses: actions/checkout@v4
-        with:
-          ref: data_raw
-          clean: true
+        run: |
+          git checkout -b data_raw
+
       - name: Remove all existing files except data folder
         run: |
           shopt -s extglob
