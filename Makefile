@@ -12,6 +12,7 @@ init:
 	. $(VENV_PATH) && uv pip install -r requirements.txt
 
 run: init
+	@echo "Running $(ENV_NAME)..."
 	$(ENV_NAME)/bin/python src/main.py 
 
 clean:
