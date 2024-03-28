@@ -35,8 +35,11 @@ jobs:
           if [ -f "$file_path" ]; then
             git add data/raw
             git commit -m "add generated files from data folder on $(date +%Y-%m-%d)"
-          git switch --orphan data_raw
-          git checkout  develop -- data/raw
+            git switch --orphan data_raw
+            git checkout  develop -- data/raw
+          else
+            echo "File $file_path does not exist."
+          fi
 
       - name: Commit and push data folder changes to another branch
         run: |
