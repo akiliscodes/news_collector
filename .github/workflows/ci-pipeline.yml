@@ -31,13 +31,7 @@ jobs:
 
       - name: Checkout repository and switch to target branch
         run: |
-          git checkout -b data_raw
-
-      - name: Remove all existing files except data folder
-        run: |
-          shopt -s extglob
-          rm -rf !(data)
-          shopt -u extglob
+          git checkout  develop -- data/raw
 
       - name: Commit and push data folder changes to another branch
         run: |
