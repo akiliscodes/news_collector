@@ -2,7 +2,7 @@ name: CI
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 * * * *'  # Run every hour
 
 permissions:
   contents: write
@@ -23,20 +23,17 @@ jobs:
         run: |
           make run 
 
-      - name: Configure Git
+      - name: Checkout repository and switch to target branch
         run: |
           git config --global user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
           git config --global user.name "$(gh api /users/${GITHUB_ACTOR} | jq .name -r)"
-
-      - name: Checkout repository and switch to target branch
-        run: |
-          file_path="data/raw/extract_$(date +%Y-%m-%d).jsonl"
+          file_path="data/raw/extract_$(date +%Y-%m-%d)_${hour}.jsonl"
           if [ -f "$file_path" ]; then
             git add data/raw
-            git commit -m "add generated files from data folder on $(date +%Y-%m-%d)"
+            git commit -m "add generated files from data folder on $(date +%Y-%m-%d at ${hour})"
             git switch --orphan data_raw
             git checkout  develop -- data/raw
-            git commit -m "task: fetched data for $(date +%Y-%m-%d)"
+            git commit -m "task: fetched data for $(date +%Y-%m-%d) at ${hour}"
             git push origin HEAD:data_raw
           else
             echo "File $file_path does not exist."
