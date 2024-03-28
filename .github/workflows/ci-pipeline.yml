@@ -42,7 +42,7 @@ jobs:
               echo "File $file_path does not exist."
           fi          
           git commit -m "add generated file"
-          git branch -u ${{ github.head_ref || github.ref_name }} 
+          git push -u origin/${{ github.head_ref || github.ref_name }} 
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
