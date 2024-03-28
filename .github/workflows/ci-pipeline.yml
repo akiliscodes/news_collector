@@ -43,7 +43,3 @@ jobs:
           fi          
           git commit -m "add generated file"
           git push -u origin/${{ github.head_ref || github.ref_name }} 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
