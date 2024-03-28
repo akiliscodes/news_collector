@@ -2,8 +2,8 @@ name: CI
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Run every hour
-
+    - cron: '0 */6 * * *'
+    
 permissions:
   contents: write
   
