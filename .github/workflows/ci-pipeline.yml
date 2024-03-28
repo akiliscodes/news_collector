@@ -39,7 +39,7 @@ jobs:
               # Commit the changes with an appropriate message
               git commit -m "Add generated file generated on $(date +%Y-%m-%d)"
               #git push -u origin/${{ github.head_ref || github.ref_name }} 
-              git remote remote get-url
+              git remote get-url
           else
               echo "File $file_path does not exist."
           fi          
