@@ -7,7 +7,9 @@ on:
   push:
     branches:
       - develop
-
+permissions:
+  contents: write
+  
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -27,7 +29,7 @@ jobs:
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
-      - name: Commit changes
+      - name: Commit and push changes
         run: |
           file_path="data/raw/extract_$(date +%Y-%m-%d).jsonl"
 
@@ -39,10 +41,7 @@ jobs:
               # Commit the changes with an appropriate message
               git commit -m "Add generated file generated on $(date +%Y-%m-%d)"
               #git push -u origin/${{ github.head_ref || github.ref_name }} 
+              git push 
           else
               echo "File $file_path does not exist."
           fi      
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
