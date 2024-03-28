@@ -26,7 +26,18 @@ jobs:
           git config --global user.name "GitHub Actions"
       - name: Commit changes
         run: |
-          git add data/raw/generated_file.txt
+          file_path="data/raw/extract_$(date +%Y-%m-%d).jsonl"
+
+          # Check if the file exists
+          if [ -f "$file_path" ]; then
+              # Add the file to the staging area
+              git add "$file_path"
+            
+              # Commit the changes with an appropriate message
+              git commit -m "Add generated file generated on $(date +%Y-%m-%d)"
+          else
+              echo "File $file_path does not exist."
+          fi          
           git commit -m "Add generated file"
       - name: Push changes
         uses: ad-m/github-push-action@master
