@@ -1,10 +1,8 @@
 name: extract_news
 
 on:
-  push:
-    branches: [develop]
-  #schedule:
-   # - cron: '0 */6 * * *'
+  schedule:
+    - cron: '0 */6 * * *'
 
 permissions:
   contents: write
@@ -34,9 +32,7 @@ jobs:
             git add data/raw
             git commit -m "add generated files from data folder on $(date +%Y-%m-%d_%H)"
             git fetch 
-            git branch
             git checkout data_raw
-            echo "Successfully checkout"
             git checkout develop -- data/raw
             git pull
             git merge
