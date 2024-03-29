@@ -33,7 +33,7 @@ jobs:
           if [ -f "$file_path" ]; then
             git add data/raw
             git commit -m "add generated files from data folder on $(date +%Y-%m-%d_%H)"
-            git switch  data_raw
+            git switch --orphan data_raw
             git checkout develop -- data/raw
             git pull
             git fetch 
