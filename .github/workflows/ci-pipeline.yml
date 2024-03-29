@@ -33,6 +33,7 @@ jobs:
           if [ -f "$file_path" ]; then
             git add data/raw
             git commit -m "add generated files from data folder on $(date +%Y-%m-%d_%H)"
+            git branch
             git checkout data_raw
             echo "Successfully checkout"
             git checkout develop -- data/raw
