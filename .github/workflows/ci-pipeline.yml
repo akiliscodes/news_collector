@@ -36,7 +36,7 @@ jobs:
             git checkout develop -- data/raw
             git pull
             git merge
-            git commit -m "task: fetched data for $(date +%Y-%m-%d_%H) at ${H}"
+            git commit -m "task: fetched data for $(date +%Y-%m-%d_%H)"
             git push origin HEAD:data_raw
           else
             echo "File $file_path does not exist."
