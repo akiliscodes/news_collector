@@ -27,7 +27,7 @@ jobs:
         run: |
           git config --global user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
           git config --global user.name "newscol_bot"
-          file_path="data/raw/extract_$(date +%Y-%m-%d_%H).jsonl"
+          file_path="data/raw/rss_extract_$(date +%Y-%m-%d_%H).jsonl"
           if [ -f "$file_path" ]; then
             git add data/raw
             git commit -m "add generated files from data folder on $(date +%Y-%m-%d_%H)"
